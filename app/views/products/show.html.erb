@@ -1,0 +1,96 @@
+<p id="notice"><%= notice %></p>
+
+<% @product_attachments.each do |p| %>
+  <%= image_tag p.avatar_url %>
+  <%= link_to "Edit Attachment", edit_product_attachment_path(p) %>
+<% end %>
+<p>
+  <strong>Name:</strong>
+  <%= @product.name %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @product.user_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @product.description %>
+</p>
+
+<p>
+  <strong>Subcategory:</strong>
+  <%= @product.subcategory_id %>
+</p>
+
+<p>
+  <strong>Initial price:</strong>
+  <%= @product.initial_price %>
+</p>
+
+<p>
+  <strong>Selling price:</strong>
+  <%= @product.selling_price %>
+</p>
+
+<p>
+  <strong>Availibility:</strong>
+  <%= @product.availibility %>
+</p>
+
+<p>
+  <strong>Opening date:</strong>
+  <%= @product.opening_date %>
+</p>
+
+<p>
+  <strong>Closing date:</strong>
+  <%= @product.closing_date %>
+</p>
+
+   <p>
+        <%= link_to "Bids", "#", id: "bids-link" %>
+   </p>
+                <section id="bids-section">
+    <ol id="bids">
+     <%= render @product.bids %>
+    </ol>
+
+<h2>BIDS</h2>
+<% @product.bids.each do |bid|%>
+  <p>
+    <strong>Bidder:</strong>
+    <%= bid.bidder%>
+  </p>
+ 
+  <p>
+    <strong>Bidding_price:</strong>
+    <%= bid.bidding_price %>
+  </p>
+  <p>
+  <%= link_to 'Destroy Bid', [bid.product, bid],
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+</p>
+<% end %>
+
+
+
+<h2>Start Bidding</h2>
+<%= form_for([@product, @product.bids.build],remote: true) do |f| %>
+  <p>
+    <%= f.label :bidder %><br>
+    <%= f.text_field :bidder %>
+  </p>
+  <p>
+    <%= f.label :bidding_price %><br>
+    <%= f.text_field :bidding_price %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>

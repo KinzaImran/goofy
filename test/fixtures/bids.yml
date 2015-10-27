@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bidder: MyString
+  bidding_price: 9.99
+  product_id: 
+  user_id: 
+
+two:
+  bidder: MyString
+  bidding_price: 9.99
+  product_id: 
+  user_id: 
